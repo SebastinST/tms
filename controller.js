@@ -1084,7 +1084,7 @@ exports.addTaskNotes = async (req, res) => {
   // Update notes with new notes and audit trail
   New_notes += 
   `
-  \nNotes Added by User (${Task_owner}) at Datetime: ${new Date().toLocaleString()}
+  \nTask in '${req.task.Task_state}', Notes Added by User (${Task_owner}) at Datetime: ${new Date().toLocaleString()}
   \n******************************************************************************************************************************************************************************
   \n
   `
@@ -1223,7 +1223,7 @@ exports.rejectTask = async (req, res) => {
   // Update notes with new notes and audit trail
   New_notes += 
   `
-  \nRejected to '${nextState}' state by User (${Task_owner}) at Datetime: ${new Date().toLocaleString()}
+  \nRejected to '${nextState}' state by User (${Task_owner}) at Datetime: ${new Date().toLocaleString()} ${Task_plan && `, plan changed to ${Task_plan}`}
   \n******************************************************************************************************************************************************************************
   \n
   `
@@ -1338,7 +1338,7 @@ exports.assignTaskToPlan = async (req, res) => {
   // Update notes with new notes and audit trail
   New_notes +=
   `
-  \n${Task_plan ? "Changed Plan to " + Task_plan : "Removed Plan"} by User (${Task_owner}) at Datetime: ${new Date().toLocaleString()}
+  \nTask in '${req.task.Task_state}', ${Task_plan ? "changed Plan to " + Task_plan : "Removed Plan"} by User (${Task_owner}) at Datetime: ${new Date().toLocaleString()}
   \n******************************************************************************************************************************************************************************
   \n
   `
